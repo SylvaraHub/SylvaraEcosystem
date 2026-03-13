@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2026-03-13
+
+### Added
+- **Android platform support:** Full feature parity with iOS — text inference, vision, speech-to-text, embeddings/RAG, model management, memory estimation, and telemetry
+- **Multi-ABI native builds:** arm64-v8a, armeabi-v7a, and x86_64 via Android NDK cross-compilation
+- **CI Android build:** `scripts/build-android.sh` for reproducible NDK cross-compilation, integrated into GitHub Actions
+- **Android example app:** INTERNET permission, FileProvider for model downloads, camera/gallery vision picker, device status info
+- **InferenceConfig:** Adaptive configuration with device-aware defaults for Android (CPU-only, 50% memory budget)
+- **Integration test suite:** 4 integration tests (LLM, vision, whisper, image gen) for automated device testing
+
+### Changed
+- **Inference layer hardening:** Memory safety improvements, adaptive config, soak test infrastructure
+- **Android plugin:** Expanded `EdgeVedaPlugin.kt` with MethodChannel handlers for all SDK operations
+- **32-bit ARM guard:** Memory guard enforces safe limits on 32-bit Android devices
+- **Telemetry bridge:** Android telemetry via MethodChannel (thermal state, battery, memory)
+
+### Fixed
+- **Android SDK timeouts:** Platform-specific timeout tuning for CPU-only inference on Android
+- **Android permissions:** Least-privilege manifest, request-code map replacing single-slot state
+- **CI:** Android `.so` size gate raised to 35MB with llvm-strip, format and lint fixes
+
 ## [2.4.2] - 2026-02-26
 
 ### Fixed
