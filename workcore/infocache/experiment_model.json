@@ -1,0 +1,27 @@
+export interface ExperimentRecord {
+  experimentId: string
+  createdAt: string
+  description: string
+  parameters: {
+    tokenSymbol: string
+    analysisWindowMinutes: number
+    volatilityThreshold: number
+  }
+  status: "draft" | "running" | "completed" | "failed"
+  results: any | null
+  notes: string
+}
+
+export const DEFAULT_EXPERIMENT: ExperimentRecord = {
+  experimentId: "",
+  createdAt: "",
+  description: "",
+  parameters: {
+    tokenSymbol: "",
+    analysisWindowMinutes: 0,
+    volatilityThreshold: 0.0,
+  },
+  status: "draft",
+  results: null,
+  notes: "",
+}
